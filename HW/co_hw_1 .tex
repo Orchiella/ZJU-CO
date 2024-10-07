@@ -1,0 +1,79 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\title{CO-HW-1}
+\author{Orchiella}
+\date{October 7,2024}
+
+\begin{document}
+
+
+\maketitle
+1.\\
+(1)(i) When $y-x=1$,$ inf(T^*(C)) $ is $2$.\\
+It exists because the distance of the round trip $ \pi (1,2,...,n) $ is $2$.\\
+Now prove the optimality.\\
+Let $\{city_i | i \geq x\}$ be denoted as \textbf{\textit{A}} and $\{city_i | i < x\}$ be denoted as \textbf{\textit{B}}.\\
+According to definition of matrix \textit{\textbf{C}},we know the distance between two cities is $1$ if and only if one belongs to \textit{\textbf{A}} while the other belongs to \textbf{\textit{B}};in all other cases, the distance is $0$.\\
+If the starting city of round trip belongs to \textbf{\textit{A}},the salesman must enter a city in \textbf{\textit{B}} at least once and leave for a city in \textbf{\textit{A}} at least once for the return.The distance for both processes mentioned above is $1$ and the same goes for starting from a city in \textbf{\textit{B}}.\\
+Thus,the total distance is at least $2$\\
+\\
+(ii) When $y-x = 2$,$inf(T^*(C))$ is $1$.\\
+It also exists because the distance of the round trip $\pi$ is $1$ in this case\\
+Now prove the optimality.\\
+Denote $\{city_i | i \geq x\}$ as \textbf{\textit{P}} and $\{city_i | i \leq y\}$ as \textbf{\textit{Q}} .\\
+According to definition of matrix \textit{\textbf{C}},we know the distance between two cities is $1$ if and only if one belongs to \textit{\textbf{P}} while the other belongs to \textbf{\textit{Q}};in all other cases, the distance is $0$.\\
+If the starting city of round trip belongs to \textbf{\textit{P}},the salesman must either enter a city in \textit{\textbf{Q}} from \textit{\textbf{P}},or transfer from $city_{x+1}$ to a city in \textbf{\textit{Q}} and then return to \textbf{\textit{P}} from \textbf{\textit{Q}},The distance for both cases mentioned above is $1$,so the total distance is at least $1$.The same goes for starting from \textbf{\textit{Q}}\\
+If the starting city is $city_{x+1}$,the salesman must trip between \textit{\textbf{P}} and \textbf{\textit{Q}} before returning.\\
+Therefore,the total distance is at least $1$,too.\\
+\\
+(2)(i)The matrix  is
+\[
+\mathbf{\Phi}_n = \begin{bmatrix}
+0      & 1       & 1      & \ddots & 0      & 0      & 0 \\
+1      & 0       & 0      & \ddots & 1      & 0      & 0 \\
+1     & 0       & 0      & \ddots & 0 & 1 & 0 \\
+0      & 1       & 0      & \ddots & 0      & 0      & 1 \\
+0      & 0       & 1      & \ddots & 0      & 0      & 1 \\
+0      & 0       & 0      & \ddots & 1      & 1      & 0
+\end{bmatrix}
+\]\\
+(ii)Just verify if the distance of $\pi$ is the upper bound of $T^*(C)$.\\
+When $y-x=1$,the only two non-zero distances are $c_{x,y-1}=1$ and $c_{x+1,y}=1$,meaning the total distance is $2$.\\
+When $y-x=2$,the only non-zero distance is $c_{x,y}=1$,meaning the total distance is $1$.\\
+Hence the optimality.\\
+\\
+(3)To prove $\pi$ is the optimal solution,it suffices to show that the total distance of any permutation of  $\pi$ is greater.\\
+Consider swapping only $city_i$ and $city_{i+1}$ in $\pi$,which results in a permutation denoted as $\pi_1$.\\
+According to the property of symmetric Monge matrix,we have\\
+$l_\pi=c_{\pi(1),\pi(2)}+...+(c_{\pi(i-1),\pi(i)}+c_{\pi(i+1),\pi(i+2)})+...+c_{\pi(n-1),\pi(n)}
+$\\
+$\leq
+l_{\pi_1}=c_{\pi(1),\pi(2)}+...+(c_{\pi(i-1),\pi(i+1)}+c_{\pi(i),\pi(i+2)})+...+c_{\pi(n-1),\pi(n)}$\\
+Repeat the city swapping process to generate all possible permutations...\\(well...I don't know how to proceed anymore....)\\
+\\
+2.\\
+(1)If we exchange $c_{l+r}(>0,r>0)$ coins with a face value of  $(l+r)$.\\Consider the case that $p_1=p_2=...=p_k=l$,which satisfies $\sum_{j=1}^k=kl\leq N=kl$.\\
+In this case,all coins exchanged must be spent.\\
+i.e. $\sum_{j=1}^kp_{ij}=c_i$
+However, $p_{l+r,j}$ must be $0$.(If this is not the case,then the inequality$\sum_{i=1}^{N}ip_{ij}\geq (l+r)p_{l+r,j}\geq l+r\neq l$ holds).\\
+So $c_{l+r}=\sum_{j=1}^k {p_{l+r,j}}=\sum_{j=1}^k 0 = 0$,which contradicts with $c_{l+r}>0$.\\
+\\
+(2)If not, $\exists i_0$ s.t. $T_{i_0}<ki_0$.
+Consider the case that $p_1=p_2=...=p_k=i_0$,which satisfies $\sum_{j=1}^k=ki_0\leq N=kl$.\\
+In this case,all the bills are supposed to be paid with coins with a face value not exceeding $i_0$.Obviously,these coins totaling $T_{i_0}$ are not enough to pay those bills totaling $ki_0$.\\
+\\
+(3)Building on the result from (2),we concludes that $T_i\geq ki$.\\
+Let $=$ holds for any $i$ to save coins as much as possible.\\
+We have $\sum_{j=1}^i jc_j=ki$.\\
+Take $i=1$,we get $c_1=k$.\\
+Take $i=2$ and $c_1=k$,we get $c_2 = \frac{k}{2}$.\\
+...\\
+Similarly,we get $c_i=\frac{k}{i}$\\
+$\sum_{i=1}^lc_i=\sum_{i=1}^l \frac{k}{i}=k\sum_{i=1}^l\frac{1}{i}=kH_l$.\\
+\\
+(4)Similar to (3),\\
+\[ c_i= \begin{cases} [\frac{k}{i}]+1, & \text{if } [\frac{k}{i}] \notin Z ,\\\frac{k}{i}  & \text{if }[\frac{k}{i}] \in Z \end{cases} \]
+
+
+\end{document}
